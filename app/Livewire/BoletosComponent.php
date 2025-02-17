@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\boletosModel;
 use App\Models\gruposModel;
 use App\Models\guiasModel;
+use App\Models\tipoGpoModel;
 use Livewire\Component;
 
 class BoletosComponent extends Component
@@ -12,7 +13,7 @@ class BoletosComponent extends Component
 
     public $Internacional,$Nacional,$Mayor60,$Menor13,$Profesor,$Estudiante,$Discapacidad;
     public $GpoAbierto, $boletos, $boletoscobro, $cobro, $mail, $notas;
-    public $guia, $tipoReco, $GpoSize;
+    public $guia, $tipoReco, $GpoSize, $NvoRecorrido, $NvoGuia;
 
     public function mount(){
          ##### Obtiene el número de grupos abiertos del día de hoy
@@ -27,7 +28,7 @@ class BoletosComponent extends Component
         $this->GpoAbierto=gruposModel::where('gpo_date', date('Y-m-d'))
             ->where('gpo_cerrado','0')
             ->first();
-
+        $this->Internacional=$this->Nacional=$this->Mayor60=$this->Menor13=$this->Profesor=$this->Estudiante=$this->Discapacidad=null;
     }
 
     public function suma($var){
@@ -40,7 +41,7 @@ class BoletosComponent extends Component
     }
 
     public function borrar(){
-        $this->Internacional=null;
+        $this->Internacional='null';
         $this->Nacional=null;
         $this->Mayor60=null;
         $this->Menor13=null;
@@ -67,12 +68,30 @@ class BoletosComponent extends Component
         }
     }
 
+
     public function CerrarGrupo(){
         gruposModel::where('gpo_cerrado','0')->update(['gpo_cerrado'=>'1']);
         redirect('/grupos');
     }
 
+    public function CambiaRecorrido($indica){
+        #dd($this->GpoAbierto->gpo_id);
+        if($indica=='reco'){
+            $this->validate(['NvoRecorrido'=>'required']);
+
+            gruposModel::where('gpo_id',$this->GpoAbierto->gpo_id)->update([
+                    'gpo_cgponame'=>$this->NvoRecorrido]
+                );
+        }elseif($indica=='guia'){
+            $this->validate(['NvoGuia'=>'required']);
+            gruposModel::where('gpo_id',$this->GpoAbierto->gpo_id)->update(
+                ['gpo_guianame'=>$this->NvoGuia]
+            );
+        }
+        redirect('/boletos');
+    }
     public function render() {
+        if(preg_match('/\D/', $this->Internacional)) {$this->Internacional='0';}
         ##### Obtiene el número de grupos abiertos del día de hoy
         $NumGposAbiertos=gruposModel::where('gpo_date', date('Y-m-d'))
             ->where('gpo_cerrado','0')
@@ -107,7 +126,8 @@ class BoletosComponent extends Component
 
         return view('livewire.boletos-component',[
             'fecha'=>$fecha,
-            'guias'=>guiasModel::where('guia_act','1')->select('guia_name')->get(),
+            'guias'=>guiasModel::where('guia_act','1')->where('guia_name','!=','Aún sin definir')->select('guia_name')->get(),
+            'recorridos'=>tipoGpoModel::where('cgpo_act','1')->where('cgpo_name','!=','Aún sin definir')->select('cgpo_name')->get(),
 
         ]);
 

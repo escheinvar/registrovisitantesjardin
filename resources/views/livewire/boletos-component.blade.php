@@ -56,11 +56,9 @@
 
                 <!-- Tipo de recorrido -->
                 <span style="text-decoration:underline; cursor: pointer;">
-                    {{ $GpoAbierto->gpo_cgponame  }}
-
-                    @if($GpoAbierto->gpo_cgponame =='Aún sin definir')
-
-                    @endif
+                    <span onclick="VerNoVer('Ver','Recorrido')" class="PaClick">
+                        {{ $GpoAbierto->gpo_cgponame  }}
+                    </span>
                 </span>  &nbsp;
 
                 <!-- Hora del recorrido -->
@@ -68,20 +66,54 @@
 
                 <!-- Guía -->
                 <span style="text-decoration:underline; cursor: pointer;">
-                    @if($GpoAbierto->gpo_guianame =='Aún sin definir') Guía @endif
-                    {{ $GpoAbierto->gpo_guianame }}
+                    <span onclick="VerNoVer('Ver','Guia')" class="PaClick">
+                        {{ $GpoAbierto->gpo_guianame }}
+                    </span>
                 </span>
-                <div>
-                    <!-- Tamaño del grupo -->
-                     {{ $GpoSize }} personas
-                </div>
+                {{-- <div> --}} &nbsp; &nbsp;
+                    <span style="background-color:#CD7B34; display:inline-block;border-radius:7px; padding:10px; text-align:center;">
+                        <!-- Tamaño del grupo -->
+                        {{ $GpoSize }} personas
+                    </span>
+                {{-- </div> --}}
             </h3>
+            <!-- Select de tipo de recorrido -->
+            <div id="sale_VerRecorrido" style="display:none;">
+                <label class="label-control">Recorrido:</label>
+                <select wire:model="NvoRecorrido" wire:change="CambiaRecorrido('reco')" class="form-select" style="width:300px;">
+                    <option value="">Indicar</option>
+                    @foreach ($recorridos as $rec)
+                        <option value="{{ $rec->cgpo_name }}">{{ $rec->cgpo_name }}</option>
+                    @endforeach
+                </select>
+                @error('NvoRecorrido')<error>{{ $message }}</error>@enderror
+            </div>
+
+            <!-- Select de tipo de recorrido -->
+            <div id="sale_VerGuia" style="display:none;">
+                <label class="label-control">Guía:</label>
+                <select wire:model="NvoGuia" wire:change="CambiaRecorrido('guia')" class="form-select" style="width:300px;">
+                    <option value="">Indicar</option>
+                    @foreach ($guias as $gui)
+                        <option value="{{ $gui->guia_name }}">{{ $gui->guia_name }}</option>
+                    @endforeach
+                </select>
+                @error('NvoGuia')<error>{{ $message }}</error>@enderror
+            </div>
+
         </div>
         <div class="col-3">
             <!-- Botón de cerrar grupo -->
-            @if($boletos == '0')
+            @if($boletos == '0' AND ($GpoAbierto->gpo_guianame != 'Aún sin definir' OR $GpoAbierto->gpo_cgponame != 'Aún sin definir'  ))
                 <span style="float: right; margin:15px;">
-                    <i class="bi bi-door-open-fill" wire:click="CerrarGrupo()" wire:confirm="Ya no podrás ingresar a ninguna persona a este grupo. ¿Deseas continuar?" style="cursor: pointer;color:#64383E"> Cerrar Grupo</i>
+                    <i class="bi bi-door-open-fill" wire:click="CerrarGrupo()" wire:confirm="Ya no podrás ingresar a ninguna persona a este grupo. ¿Deseas continuar?" style="cursor: pointer;color:#64383E">
+                        Cerrar Grupo
+                    </i>
+                </span>
+            @endif
+            @if( $GpoAbierto->gpo_guianame == 'Aún sin definir' OR $GpoAbierto->gpo_cgponame == 'Aún sin definir'   )
+                <span style="background-color:#CD7B34;padding:3px;">
+                    Falta definir guia / tipo.
                 </span>
             @endif
         </div>
@@ -91,7 +123,7 @@
         <div class="col-xs-6 col-sm-4 col-md-3">
             <div class="gpo form-group">
                 <div class="colA">Internacional</div>
-                <input wire:model.live="Internacional" type="number" min="0" class="colB form-control">
+                <input wire:model.live="Internacional" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
                 <i wire:click="suma('Internacional')" class="botoncillo bi bi-plus-circle-fill"></i>
                 @if($Internacional > 0)
                     <i wire:click="resta('Internacional')" class="botoncillo bi bi-dash-circle-fill"></i>
@@ -100,7 +132,7 @@
 
             <div class="gpo form-group">
                 <div class="colA">Nacional completo</div>
-                <input wire:model.live="Nacional" type="number" min="0" class="colB form-control">
+                <input wire:model.live="Nacional" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
                 <i wire:click="suma('Nacional')" class="botoncillo bi bi-plus-circle-fill"></i>
                 @if($Nacional > 0)
                     <i wire:click="resta('Nacional')" class="botoncillo bi bi-dash-circle-fill"></i>
@@ -110,7 +142,7 @@
         <div class="col-xs-6 col-sm-4 col-md-3">
             <div class="gpo form-group">
                 <div class="colA">Mayores 60</div>
-                <input wire:model.live="Mayor60" type="number" min="0" class="colB form-control">
+                <input wire:model.live="Mayor60" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
                 <i wire:click="suma('Mayor60')" class="botoncillo bi bi-plus-circle-fill"></i>
                 @if($Mayor60 > 0)
                     <i wire:click="resta('Mayor60')" class="botoncillo bi bi-dash-circle-fill"></i>
@@ -119,7 +151,7 @@
 
             <div class="gpo form-group">
                 <div class="colA">Menores 13</div>
-                <input wire:model.live="Menor13" type="number" class="colB form-control">
+                <input wire:model.live="Menor13" onkeydown="SoloNums(event);" type="number" class="colB form-control">
                 <i wire:click="suma('Menor13')" class="botoncillo bi bi-plus-circle-fill"></i>
                 @if($Menor13 > 0)
                     <i wire:click="resta('Menor13')" class="botoncillo bi bi-dash-circle-fill"></i>
@@ -130,7 +162,7 @@
         <div class="col-xs-6 col-sm-4 col-md-3">
             <div class="gpo form-group">
                 <div class="colA">Profesores</div>
-                <input wire:model.live="Profesor" type="number" min="0" class="colB form-control">
+                <input wire:model.live="Profesor" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
                 <i wire:click="suma('Profesor')" class="botoncillo bi bi-plus-circle-fill"></i>
                 @if($Profesor > 0)
                     <i wire:click="resta('Profesor')" class="botoncillo bi bi-dash-circle-fill"></i>
@@ -139,7 +171,7 @@
 
             <div class="gpo form-group">
                 <div class="colA">Estudiantes</div>
-                <input wire:model.live="Estudiante" type="number" min="0" class="colB form-control">
+                <input wire:model.live="Estudiante" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
                 <i wire:click="suma('Estudiante')" class="botoncillo bi bi-plus-circle-fill"></i>
                 @if($Estudiante > 0)
                     <i wire:click="resta('Estudiante')" class="botoncillo bi bi-dash-circle-fill"></i>
@@ -150,7 +182,7 @@
         <div class="col-xs-6 col-sm-4 col-md-3">
             <div class="gpo form-group">
                 <div class="colA">Discapacidad</div>
-                <input wire:model.live="Discapacidad" type="number" min="0" class="colB form-control">
+                <input wire:model.live="Discapacidad" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
                 <i wire:click="suma('Discapacidad')" class="botoncillo bi bi-plus-circle-fill"></i>
                 @if($Discapacidad > 0)
                     <i wire:click="resta('Discapacidad')" class="botoncillo bi bi-dash-circle-fill"></i>

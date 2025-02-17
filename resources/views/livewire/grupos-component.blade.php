@@ -31,6 +31,8 @@
                             <td>{{ $g->gpo_cgponame }}</td>
                             <!-- guia-->
                             <td>{{ $g->gpo_guianame }}</td>
+                            <!-- Visitante -->
+                            {{-- {{ $NumGente->where('bol_gpoid',$g->gpo_id)->value('suma') }} --}}
                             <!-- Hora-->
                             <td>{{  date('H:m',strtotime($g->gpo_ini_reg))  }} </td>
                             <!-- Estatus-->

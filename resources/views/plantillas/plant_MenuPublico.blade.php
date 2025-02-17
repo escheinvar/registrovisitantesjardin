@@ -24,18 +24,37 @@
             </div>
             <div class="offcanvas-body">
                 <ul class="navbar-nav justify-content-end flex-grow-1">
+                    @if(Auth::user())
                     <!-- ----- Inicio ----- -->
                     <li class="nav-item">
-                        <a class="nav-link @if(request()->path() == '/grupos') active @endif" href="/grupos">
-                           Grupos
+                        <a class="nav-link @if(request()->path() == '/home') active @endif" href="/home">
+                           Home
                         </a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link @if(request()->path() == '/boletos') active @endif" href="/boletos">
+                        <a class="nav-link @if(request()->path() == '/grupos' OR request()->path() == '/boletos' ) active @endif" href="/grupos">
                            Boletos
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <button type="submit" class="nolink btn" style="padding:0;margin:0;">
+                                    Salir
+                            </button>
+                        </form>
+
+                    </li>
+
+                    {{-- @else
+                        <li class="nav-item">
+                            <a class="nav-link @if(request()->path() == '/') active @endif" href="/">
+                            Ingresar
+                            </a>
+                        </li> --}}
+                    @endif
 
 
 

@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\boletosModel;
 use App\Models\gruposModel;
 use App\Models\guiasModel;
 use App\Models\tipoGpoModel;
@@ -37,6 +38,7 @@ class GruposComponent extends Component
     }
 
     public function render() {
+
         ##### Obtiene la fecha de hoy
         $fecha=[
             'anio'=>date('Y'),'mes'=>date('n'),'dia'=>date('j'),
@@ -44,6 +46,14 @@ class GruposComponent extends Component
             'meses'=>['0','enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'],
             'semana'=>['0','lunes','martes','miercoles','jueves','viernes','sábado','domingo']
         ];
+
+        ##### Calcula el número de gente por recorrido:
+        // $NumGente=boletosModel::selectRaw('bol_gpoid, sum(bol_cant) as suma, gpo_date')
+        //     ->groupBy('bol_gpoid','gpo_date')
+        //     ->join('grupos','bol_gpoid','=','gpo_id')
+        //     ->where('gpo_date',date('Y-m-d'))
+        //     ->get();
+        // dd($NumGente->where('bol_gpoid','2')->value('suma'));
 
         ##### Obtiene grupos del día de hoy
         $grupos=gruposModel::where('gpo_date', date('Y-m-d'))->get();
@@ -54,13 +64,11 @@ class GruposComponent extends Component
         ##### Tipo de grupo para menú
         $tipoGrupo=tipoGpoModel::where('cgpo_act','1')->get();
 
-        ##### Lista de guias para menú.
+        ##### Lista de   guias para menú.
         $guias=guiasModel::where('guia_act','1')->get();
 
         ##### Asigna número de grupo
         $this->numero= $grupos->count() + 1;
-
-#dd($grupos,$gruposAbiertos);
 
         return view('livewire.grupos-component',[
             'fecha'=>$fecha,
@@ -68,6 +76,7 @@ class GruposComponent extends Component
             'tiposGpo'=>$tipoGrupo,
             'guias'=>$guias,
             'gruposAbiertos'=>$gruposAbiertos,
+
         ]);
     }
 }
