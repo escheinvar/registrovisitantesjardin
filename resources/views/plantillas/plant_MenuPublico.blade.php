@@ -31,12 +31,21 @@
                            Home
                         </a>
                     </li>
+                    @if(preg_match('/recorridos/', implode(session('rol') ))==true)
+                        <li class="nav-item">
+                            <a class="nav-link @if(request()->path() == '/grupos' OR request()->path() == '/boletos' ) active @endif" href="/grupos">
+                            Boletos
+                            </a>
+                        </li>
+                    @endif
 
-                    <li class="nav-item">
-                        <a class="nav-link @if(request()->path() == '/grupos' OR request()->path() == '/boletos' ) active @endif" href="/grupos">
-                           Boletos
-                        </a>
-                    </li>
+                    @if(preg_match('/admin/', implode(session('rol') ))==true)
+                        <li class="nav-item">
+                            <a class="nav-link @if(request()->path() == '/grupos' OR request()->path() == '/boletos' ) active @endif" href="/grupos">
+                            Boletos
+                            </a>
+                        </li>
+                    @endif
 
                     <li class="nav-item">
                         <form action="{{route('logout')}}" method="post">

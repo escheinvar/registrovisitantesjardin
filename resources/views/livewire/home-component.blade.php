@@ -6,8 +6,13 @@
         </div>
         <div class="py-4">
             <ul>
-                <li><a href="/usuarios">Usuarios</a></li>
-                <li><a href="/grupos">Vender boletos</a></li>
+                @if(preg_match('/admin/', implode(session('rol') ))==true)
+                    <li><a href="/usuarios">Usuarios</a></li>
+                @endif
+
+                @if(preg_match('/recorridos/', implode(session('rol') ))==true)
+                    <li><a href="/grupos">Vender boletos</a></li>
+                @endif
             </ul>
         </div>
     </div>

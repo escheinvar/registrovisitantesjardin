@@ -6,17 +6,20 @@ use App\Livewire\BoletosComponent;
 use App\Livewire\GruposComponent;
 use App\Livewire\HomeComponent;
 use App\Livewire\UsersComponent;
-use App\Models\gruposModel;
 use Illuminate\Support\Facades\Route;
-
-
+use App\Http\Middleware\soloAdminMiddle;
+use App\Http\Middleware\soloRecorridosMiddle;
 
 Route::middleware(['auth.basic'])->group(function(){
-    Route::get('/grupos',GruposComponent::class)->name('grupos');
-    Route::get('/boletos',BoletosComponent::class)->name('boletos');
     Route::get('/home',HomeComponent::class)->name('home');
-    Route::get('/usuarios',UsersComponent::class)->name('usuarios');
+    Route::get('/grupos',GruposComponent::class)->name('grupos')->middleware(soloRecorridosMiddle::class);;
+    Route::get('/boletos',BoletosComponent::class)->name('boletos')->middleware(soloRecorridosMiddle::class);;
+
 });
+
+Route::get('/usuarios',UsersComponent::class)
+    ->name('usuarios')
+    ->middleware(soloAdminMiddle::class);
 
 /* ---------------------------------------- LOGIN / LOGOUT ------------------------- */
 Route::get('/',[loginController::class,'index'])->name('login');
