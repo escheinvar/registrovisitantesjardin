@@ -29,15 +29,15 @@ Acceso al sistema
                     <form action="{{route('login')}}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="correo">Correo eletrónico</label>
-                            <input name="correo" value="coordinarecs@jardinoaxaca.mx" type="email" class="form-control" id="correo" placeholder="Ingresa tu correo">
+                            <label for="correo">Correo eletrónico</label> <!-- coordinarecs@jardinoaxaca.mx -->
+                            <input name="correo" value="" type="email" class="form-control" id="correo" placeholder="Ingresa tu correo">
                             @error('correo')<error>{{$message}}</error>@enderror
 
                         </div>
 
                         <div class="form-group form-con-icono">
-                            <label for="contrasenia">Contraseña</label>
-                            <input name="contrasenia" value="recorridos" type="password" class="form-control" id="passfield" placeholder="Ingresa tu contraseña">
+                            <label for="contrasenia">Contraseña</label><!-- recorridos-->
+                            <input name="contrasenia" value="" type="password" class="form-control" id="passfield" placeholder="Ingresa tu contraseña">
                             <i class="bi bi-eye-slash form-icon" id='passicon' onclick="VerNoVerPass('passfield','passicon','bi bi-eye form-icon', 'bi bi-eye-slash form-icon')" style="padding:10px; cursor:pointer;"></i>
                             @error('contrasenia')<error>{{$message}}</error>@enderror
                         </div>

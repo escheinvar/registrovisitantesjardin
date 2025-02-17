@@ -28,7 +28,7 @@ class UsersSeed extends Seeder
             [
                 'name'=>'Coordina recorridos',
                 'act'=>'1',
-                'email'=>'coordinarecs@jardinoaxaca.mx',
+                'email'=>'recorridos@jardinoaxaca.mx',
                 'password'=>Hash::make('recorridos')
             ],
 
@@ -53,10 +53,10 @@ class UsersSeed extends Seeder
         ####################################################### Asigna roles a usuarios
         $events=[
             ['rol_email'=>'admin@jardinoaxaca.mx',        'rol_rol'=>'admin'],
-            ['rol_email'=>'admin@jardinoaxaca.mx',        'rol_rol'=>'recorridos'],
-            ['rol_email'=>'admin@jardinoaxaca.mx',        'rol_rol'=>'escolares'],
-            ['rol_email'=>'admin@jardinoaxaca.mx',        'rol_rol'=>'guia'],
-            ['rol_email'=>'coordinarecs@jardinoaxaca.mx', 'rol_rol'=>'recorridos'],
+            // ['rol_email'=>'admin@jardinoaxaca.mx',        'rol_rol'=>'recorridos'],
+            // ['rol_email'=>'admin@jardinoaxaca.mx',        'rol_rol'=>'escolares'],
+            // ['rol_email'=>'admin@jardinoaxaca.mx',        'rol_rol'=>'guia'],
+            ['rol_email'=>'recorridos@jardinoaxaca.mx', 'rol_rol'=>'recorridos'],
         ];
         foreach ($events as $event){
             UserRolesModel::create($event);
