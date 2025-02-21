@@ -15,8 +15,7 @@ class boletosModel extends Model
 
     protected $fillable = [
         'bol_gpoid',
-        'bol_gponumber',
-        'bol_gponame',
+        'bol_gpodate',
         'bol_bolname',
         'bol_cant',
         'bol_tipopago',

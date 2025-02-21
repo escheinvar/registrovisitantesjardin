@@ -40,7 +40,9 @@
 --}}
 
      <!-- ----------------------------------- FONT AWESOME jardinetnobiologicodeoaxaca ------------------>
+{{--
      <script src="https://kit.fontawesome.com/0001232f51.js" crossorigin="anonymous"></script>
+--}}
 
 {{--
      <!-- ----------------------------------- LEAFLET -------------------------------------------->

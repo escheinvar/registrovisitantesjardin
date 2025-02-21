@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
             GuiasSeeder::class,
             tipoBoletoSeeder::class,
             tipoGpoSeeder::class,
+
+            boletosSeeder::class,
         ]);
 
         // User::factory(10)->create();

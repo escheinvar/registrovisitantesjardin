@@ -41,11 +41,20 @@
 
                     @if(preg_match('/admin/', implode(session('rol') ))==true)
                         <li class="nav-item">
-                            <a class="nav-link @if(request()->path() == '/grupos' OR request()->path() == '/boletos' ) active @endif" href="/grupos">
-                            Boletos
+                            <a class="nav-link @if(request()->path() == '/usuarios' OR request()->path() == '/usuarios' ) active @endif" href="/usuarios">
+                            Usuarios
                             </a>
                         </li>
                     @endif
+
+                    @if(preg_match('/admin/', implode(session('rol') ))==true)
+                        <li class="nav-item">
+                            <a class="nav-link @if(request()->path() == '/verRecorridos' OR request()->path() == '/verRecorridos' ) active @endif" href="/verRecorridos">
+                            Informe<br>Recorridos
+                            </a>
+                        </li>
+                    @endif
+
 
                     <li class="nav-item">
                         <form action="{{route('logout')}}" method="post">

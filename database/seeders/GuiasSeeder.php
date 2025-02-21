@@ -15,24 +15,21 @@ class GuiasSeeder extends Seeder
     {
         $events=[
             'Aún sin definir',
+            'Recorrido',
+            'Alejandro',
             'Geovanny',
             'Vianney',
-            'Miriam',
             'Jaquie',
             'Abdiel',
             'David',
             'Erick',
+            'Miriam',
             'Epifania',
 
             'Xitlali',
             'Niza',
             'Mariana',
             'Enrique',
-
-            'Recorrido',
-            'Guia1',
-            'Guia2',
-            'Guia3',
         ];
 
         foreach ($events as $event){

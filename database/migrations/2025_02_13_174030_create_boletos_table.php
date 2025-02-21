@@ -15,11 +15,7 @@ return new class extends Migration
             $table->id('bol_id');
 
             $table->foreignId('bol_gpoid')->constrained('grupos','gpo_id');
-            #$table->integer('bol_gponumber');
-
-            #$table->string('bol_gponame');
-            #$table->foreign('bol_gponame')->references('cgpo_name')->on('cat_tipo_gpo')->onDelete('cascade')->constrained('cat_tipo_gpo','cgpo_name');
-
+            $table->date('bol_gpodate');
             $table->string('bol_bolname');
             $table->foreign('bol_bolname')->references('bol_name')->on('cat_tipo_boleto')->onDelete('cascade')->constrained('cat_tipo_boleto','bol_name');
 
