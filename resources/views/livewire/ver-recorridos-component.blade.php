@@ -15,6 +15,7 @@
                 </div>
 
                 <div class="col-6">
+                    {{-- <input wire:model="DesdeKobo" name="DesdeKobo" type="file" wire:click="Importar()" class="btn btn-secondary" accept=".csv" />> --}}
                 </div>
 
                 <div class="col-2">

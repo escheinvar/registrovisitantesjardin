@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Exports\ExportaVerRecorridos;
+use App\Imports\ImportaDesdeKobo;
 use App\Models\boletosModel;
 use App\Models\gruposModel;
 use App\Models\reporteBoletos;
@@ -13,7 +14,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class VerRecorridosComponent extends Component
 {
-    public $fechaIni,$fechaFin, $order,$sent;
+    public $fechaIni,$fechaFin, $order,$sent, $DesdeKobo;
 
     public function mount(){
         $this->fechaIni=date('Y-m-d');
@@ -36,6 +37,11 @@ class VerRecorridosComponent extends Component
             'Salida.csv',
             \Maatwebsite\Excel\Excel::CSV,
             ['Content-Type'=>'text/csv']);
+    }
+
+    public function Importar(){
+        Excel::import(new ImportaDesdeKobo, request()->file('DesdeKobo'));
+        return back();
     }
 
     public function render(){

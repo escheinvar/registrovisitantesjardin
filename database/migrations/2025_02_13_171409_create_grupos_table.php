@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id('gpo_id');
             $table->enum('gpo_cerrado',['0','1'])->default('0');  ##### Indica si el grupo está abierto (0) o ya se cerró (1)
             $table->date('gpo_date');  #### fecha del recorrido
-            $table->integer('gpo_num');  ##### número consecutivo de recorrido del día
+            $table->integer('gpo_num')->default('0');  ##### número consecutivo de recorrido del día
 
             #$table->foreignId('gpo_cgpoid')->constrained('cat_tipo_gpo','cgpo_id'); ### tipo de grupo
             $table->string('gpo_cgponame');
