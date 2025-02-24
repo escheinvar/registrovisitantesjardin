@@ -2,12 +2,14 @@
 
 namespace App\Livewire;
 
+use App\Exports\ExportaVerRecorridos;
 use App\Models\boletosModel;
 use App\Models\gruposModel;
 use App\Models\reporteBoletos;
 use App\Models\reporteBoletosModel;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Maatwebsite\Excel\Facades\Excel;
 
 class VerRecorridosComponent extends Component
 {
@@ -27,6 +29,13 @@ class VerRecorridosComponent extends Component
         }else{
             $this->sent='asc';
         }
+    }
+
+    public function Exportar(){
+        return Excel::download(new ExportaVerRecorridos($this->fechaIni,$this->fechaFin),
+            'Salida.csv',
+            \Maatwebsite\Excel\Excel::CSV,
+            ['Content-Type'=>'text/csv']);
     }
 
     public function render(){

@@ -20,7 +20,7 @@
                 <div class="col-2">
                     <div style="width:100%; float:right;">
                         <br>
-                        <button class="btn btn-primary" disabled>Eportar a csv</button>
+                        <button wire:click="Exportar()" class="btn btn-primary">Eportar a csv</button>
                     </div>
                 </div>
 
