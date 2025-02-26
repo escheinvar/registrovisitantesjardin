@@ -58,6 +58,7 @@ class BoletosComponent extends Component
                 boletosModel::create([
                     'bol_gpoid'=>$this->GpoAbierto->gpo_id,
                     'bol_bolname'=>$i,
+                    'bol_gpodate'=>date('Y-m-d'),
                     'bol_cant'=>$this->$i,
                     'bol_tipopago'=>'ef',
                     'bol_mail'=>$this->mail,
