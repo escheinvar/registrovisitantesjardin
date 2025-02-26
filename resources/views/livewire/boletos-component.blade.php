@@ -36,6 +36,12 @@
             margin:15px;
         }
     </style>
+    <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
+    <span class="d-none d-lg-inline-block d-xl-none">lg Grande</span>
+    <span class="d-none d-md-inline-block d-lg-none">md Mediano</span>
+    <span class="d-none d-sm-inline-block d-md-none ">sm Chico</span>
+    <span class="d-xs-block d-sm-none">xs Extrachico</span>
+
 
     <div class="row">
         <div class="col-12">
@@ -120,83 +126,87 @@
     </div>
 
     <div class="row">
-        <div class="col-xs-6 col-sm-4 col-md-3">
-            <div class="gpo form-group">
-                <div class="colA">Internacional</div>
-                <input wire:model.live="Internacional" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
-                <i wire:click="suma('Internacional')" class="botoncillo bi bi-plus-circle-fill"></i>
-                @if($Internacional > 0)
-                    <i wire:click="resta('Internacional')" class="botoncillo bi bi-dash-circle-fill"></i>
-                @endif
-            </div>
 
-            <div class="gpo form-group">
-                <div class="colA">Nacional completo</div>
-                <input wire:model.live="Nacional" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
-                <i wire:click="suma('Nacional')" class="botoncillo bi bi-plus-circle-fill"></i>
-                @if($Nacional > 0)
-                    <i wire:click="resta('Nacional')" class="botoncillo bi bi-dash-circle-fill"></i>
-                @endif
-            </div>
-        </div>
-        <div class="col-xs-6 col-sm-4 col-md-3">
-            <div class="gpo form-group">
-                <div class="colA">Mayores 60</div>
-                <input wire:model.live="Mayor60" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
-                <i wire:click="suma('Mayor60')" class="botoncillo bi bi-plus-circle-fill"></i>
-                @if($Mayor60 > 0)
-                    <i wire:click="resta('Mayor60')" class="botoncillo bi bi-dash-circle-fill"></i>
-                @endif
-            </div>
-
-            <div class="gpo form-group">
-                <div class="colA">Menores 13</div>
-                <input wire:model.live="Menor13" onkeydown="SoloNums(event);" type="number" class="colB form-control">
-                <i wire:click="suma('Menor13')" class="botoncillo bi bi-plus-circle-fill"></i>
-                @if($Menor13 > 0)
-                    <i wire:click="resta('Menor13')" class="botoncillo bi bi-dash-circle-fill"></i>
-                @endif
-            </div>
-        </div>
-
-        <div class="col-xs-6 col-sm-4 col-md-3">
-            <div class="gpo form-group">
-                <div class="colA">Profesores</div>
-                <input wire:model.live="Profesor" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
-                <i wire:click="suma('Profesor')" class="botoncillo bi bi-plus-circle-fill"></i>
-                @if($Profesor > 0)
-                    <i wire:click="resta('Profesor')" class="botoncillo bi bi-dash-circle-fill"></i>
-                @endif
-            </div>
-
-            <div class="gpo form-group">
-                <div class="colA">Estudiantes</div>
-                <input wire:model.live="Estudiante" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
-                <i wire:click="suma('Estudiante')" class="botoncillo bi bi-plus-circle-fill"></i>
-                @if($Estudiante > 0)
-                    <i wire:click="resta('Estudiante')" class="botoncillo bi bi-dash-circle-fill"></i>
-                @endif
-            </div>
-        </div>
-
-        <div class="col-xs-6 col-sm-4 col-md-3">
-            <div class="gpo form-group">
-                <div class="colA">Discapacidad</div>
-                <input wire:model.live="Discapacidad" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
-                <i wire:click="suma('Discapacidad')" class="botoncillo bi bi-plus-circle-fill"></i>
-                @if($Discapacidad > 0)
-                    <i wire:click="resta('Discapacidad')" class="botoncillo bi bi-dash-circle-fill"></i>
-                @endif
-            </div>
-
-            <div class="gpo form-group">
-                    <div style="font-size: 140%; background-color:#CD7B34; display:inline-block;border-radius:7px; padding:15px; text-align:center;">
-                    <b>Boletos</b><br>
-                    {{ $boletos }} cobrar {{ $boletoscobro }}<br>
-                    <b> ${{ $cobro }}</b><br>
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="gpo">
+                    <div class="colA">Internacional</div>
+                    <input wire:model.live="Internacional" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
+                    <i wire:click="suma('Internacional')" class="botoncillo bi bi-plus-circle-fill"></i>
+                    @if($Internacional > 0)
+                        <i wire:click="resta('Internacional')" class="botoncillo bi bi-dash-circle-fill"></i>
+                    @endif
                 </div>
             </div>
-        </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="gpo">
+                    <div class="colA">Nacional completo</div>
+                    <input wire:model.live="Nacional" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
+                    <i wire:click="suma('Nacional')" class="botoncillo bi bi-plus-circle-fill"></i>
+                    @if($Nacional > 0)
+                        <i wire:click="resta('Nacional')" class="botoncillo bi bi-dash-circle-fill"></i>
+                    @endif
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="gpo form-group">
+                    <div class="colA">Mayores 60</div>
+                    <input wire:model.live="Mayor60" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
+                    <i wire:click="suma('Mayor60')" class="botoncillo bi bi-plus-circle-fill"></i>
+                    @if($Mayor60 > 0)
+                        <i wire:click="resta('Mayor60')" class="botoncillo bi bi-dash-circle-fill"></i>
+                    @endif
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="gpo form-group">
+                    <div class="colA">Menores 13</div>
+                    <input wire:model.live="Menor13" onkeydown="SoloNums(event);" type="number" class="colB form-control">
+                    <i wire:click="suma('Menor13')" class="botoncillo bi bi-plus-circle-fill"></i>
+                    @if($Menor13 > 0)
+                        <i wire:click="resta('Menor13')" class="botoncillo bi bi-dash-circle-fill"></i>
+                    @endif
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="gpo form-group">
+                    <div class="colA">Profesores</div>
+                    <input wire:model.live="Profesor" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
+                    <i wire:click="suma('Profesor')" class="botoncillo bi bi-plus-circle-fill"></i>
+                    @if($Profesor > 0)
+                        <i wire:click="resta('Profesor')" class="botoncillo bi bi-dash-circle-fill"></i>
+                    @endif
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="gpo form-group">
+                    <div class="colA">Estudiantes</div>
+                    <input wire:model.live="Estudiante" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
+                    <i wire:click="suma('Estudiante')" class="botoncillo bi bi-plus-circle-fill"></i>
+                    @if($Estudiante > 0)
+                        <i wire:click="resta('Estudiante')" class="botoncillo bi bi-dash-circle-fill"></i>
+                    @endif
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="gpo form-group">
+                    <div class="colA">Discapacidad</div>
+                    <input wire:model.live="Discapacidad" onkeydown="SoloNums(event);" type="number" min="0" class="colB form-control">
+                    <i wire:click="suma('Discapacidad')" class="botoncillo bi bi-plus-circle-fill"></i>
+                    @if($Discapacidad > 0)
+                        <i wire:click="resta('Discapacidad')" class="botoncillo bi bi-dash-circle-fill"></i>
+                    @endif
+                </div>
+            </div>
+            <div class="col-6 col-sm-4 col-md-3">
+                <div class="gpo form-group">
+                        <div style="font-size: 140%; background-color:#CD7B34; display:inline-block;border-radius:7px; padding:15px; text-align:center;">
+                        <b>Boletos</b><br>
+                        {{ $boletos }} cobrar {{ $boletoscobro }}<br>
+                        <b> ${{ $cobro }}</b><br>
+                    </div>
+                </div>
+            </div>
+
     </div>
     <div class="row">
         <div class="gpo col-10">
@@ -205,30 +215,29 @@
         </div>
     </div>
     <div class="row">
-        <div class="gpo col-5">
+        {{-- <div class="gpo col-5">
             <label class="form-label">Correo electrónico:</label>
             <div class="form-group">
                 <input wire:model="mail" type="text" class="form-control" style="width:100%;" disabled>
             </div>
-        </div>
-        <div class="gpo col-6">
+        </div> --}}
+        <div class="gpo col-5">
             @if($boletos > 0)
-                <br>
-                <button  wire:click="DarBoletos('eletronico')" class="btn btn-secondary" disabled>Enviar boletos <i class="bi bi-wifi"></i></button>
-                &nbsp;
+                <button wire:click="borrar()" class="btn btn-secondary"> Borrar datos <i class="bi bi-x-circle"></i></button>
+            @endif
+        </div>
+
+        <div class="gpo col-5">
+            @if($boletos > 0)
+                {{-- <br> --}}
+                {{-- <button  wire:click="DarBoletos('eletronico')" class="btn btn-secondary" disabled>Enviar boletos <i class="bi bi-wifi"></i></button> --}}
+                {{-- &nbsp; --}}
                 <button wire:click="DarBoletos('fisico')" class="btn btn-primary">Entregar boletos <i class="bi bi-ticket-fill"></i></button>
             @endif
         </div>
-    </div>
+    {{-- </div>
 
-    <div class="row">
-        <div class="gpo col-5">
-            @if($boletos > 0)
-                <button wire:click="borrar()" class="btn btn-primary"> Borrar datos <i class="bi bi-x-circle"></i></button>
-            @endif
-        </div>
-        <div class="gpo col-5">
+    <div class="row"> --}}
 
-        </div>
     </div>
 </div>

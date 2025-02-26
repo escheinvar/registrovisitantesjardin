@@ -99,6 +99,14 @@ class BoletosComponent extends Component
             ->count();
 
         #### Calculos de boletos, cobros y tamaño del grupo
+        if($this->boletos==''){$this->boletos='0';}
+        if($this->Internacional==''){$this->Internacional='0';}
+        if($this->Nacional==''){$this->Nacional='0';}
+        if($this->Mayor60==''){$this->Mayor60='0';}
+        if($this->Menor13==''){$this->Menor13='0';}
+        if($this->Profesor==''){$this->Profesor='0';}
+        if($this->Estudiante==''){$this->Estudiante='0';}
+        if($this->Discapacidad==''){$this->Discapacidad='0';}
         $this->boletos= $this->Internacional + $this->Nacional + $this->Mayor60 + $this->Menor13 +$this->Profesor + $this->Estudiante + $this->Discapacidad;
         $this->boletoscobro = ($this->Internacional + $this->Nacional);
         $this->cobro = $this->boletoscobro * 50;
