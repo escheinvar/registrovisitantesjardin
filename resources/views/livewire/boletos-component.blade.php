@@ -36,11 +36,11 @@
             margin:15px;
         }
     </style>
-    <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
+    {{-- <span class="d-none d-xl-inline-block">xl ExtraGrande</span>
     <span class="d-none d-lg-inline-block d-xl-none">lg Grande</span>
     <span class="d-none d-md-inline-block d-lg-none">md Mediano</span>
     <span class="d-none d-sm-inline-block d-md-none ">sm Chico</span>
-    <span class="d-xs-block d-sm-none">xs Extrachico</span>
+    <span class="d-xs-block d-sm-none">xs Extrachico</span> --}}
 
 
     <div class="row">
@@ -54,39 +54,37 @@
                 de {{ $fecha['meses'][$fecha['mes']] }}
             </h2>
         </div>
-
-        <div class="col-9">
+    </div>
+    <div class="row">
+        <div class="col-12">
             <h3 style="display: inline;">
                 <!-- Número de recorrido -->
                 ID {{ $GpoAbierto->gpo_id }}:
 
                 <!-- Tipo de recorrido -->
-                <span style="text-decoration:underline; cursor: pointer;">
+                <span style="@if($GpoAbierto->gpo_cgponame=='Aún sin definir')text-decoration:underline; @endif cursor: pointer;">
                     <span onclick="VerNoVer('Ver','Recorrido')" class="PaClick">
                         {{ $GpoAbierto->gpo_cgponame  }}
                     </span>
-                </span>  &nbsp;
+                </span>
 
                 <!-- Hora del recorrido -->
-                {{ date('H:m',strtotime($GpoAbierto->gpo_ini_reg)) }}   &nbsp;
+                {{ date('H:m',strtotime($GpoAbierto->gpo_ini_reg)) }}
 
                 <!-- Guía -->
-                <span style="text-decoration:underline; cursor: pointer;">
-                    <span onclick="VerNoVer('Ver','Guia')" class="PaClick">
-                        {{ $GpoAbierto->gpo_guianame }}
-                    </span>
+                <span onclick="VerNoVer('Ver','Guia')" class="PaClick" style="@if($GpoAbierto->gpo_guianame=='Aún sin definir') text-decoration:underline; @endif">
+                    {{ $GpoAbierto->gpo_guianame }}
                 </span>
-                {{-- <div> --}} &nbsp; &nbsp;
-                    <span style="background-color:#CD7B34; display:inline-block;border-radius:7px; padding:10px; text-align:center;">
-                        <!-- Tamaño del grupo -->
-                        {{ $GpoSize }} personas
-                    </span>
-                {{-- </div> --}}
             </h3>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-5">
             <!-- Select de tipo de recorrido -->
             <div id="sale_VerRecorrido" style="display:none;">
                 <label class="label-control">Recorrido:</label>
-                <select wire:model="NvoRecorrido" wire:change="CambiaRecorrido('reco')" class="form-select" style="width:300px;">
+                <select wire:model="NvoRecorrido" wire:change="CambiaRecorrido('reco')" class="form-select" style="">
                     <option value="">Indicar</option>
                     @foreach ($recorridos as $rec)
                         <option value="{{ $rec->cgpo_name }}">{{ $rec->cgpo_name }}</option>
@@ -94,11 +92,12 @@
                 </select>
                 @error('NvoRecorrido')<error>{{ $message }}</error>@enderror
             </div>
-
+        </div>
+        <div class="col-5">
             <!-- Select de tipo de recorrido -->
             <div id="sale_VerGuia" style="display:none;">
                 <label class="label-control">Guía:</label>
-                <select wire:model="NvoGuia" wire:change="CambiaRecorrido('guia')" class="form-select" style="width:300px;">
+                <select wire:model="NvoGuia" wire:change="CambiaRecorrido('guia')" class="form-select" style="">
                     <option value="">Indicar</option>
                     @foreach ($guias as $gui)
                         <option value="{{ $gui->guia_name }}">{{ $gui->guia_name }}</option>
@@ -106,9 +105,14 @@
                 </select>
                 @error('NvoGuia')<error>{{ $message }}</error>@enderror
             </div>
-
         </div>
-        <div class="col-3">
+        <div class="col-6">
+            <span style="background-color:#CD7B34; display:inline-block;border-radius:7px; padding:10px; text-align:center;">
+                <!-- Tamaño del grupo -->
+                {{ $GpoSize }} personas
+            </span>
+        </div>
+        <div class="col-6">
             <!-- Botón de cerrar grupo -->
             @if($boletos == '0' AND ($GpoAbierto->gpo_guianame != 'Aún sin definir' OR $GpoAbierto->gpo_cgponame != 'Aún sin definir'  ))
                 <span style="float: right; margin:15px;">
@@ -126,7 +130,6 @@
     </div>
 
     <div class="row">
-
             <div class="col-6 col-sm-4 col-md-3">
                 <div class="gpo">
                     <div class="colA">Internacional</div>
@@ -209,9 +212,11 @@
 
     </div>
     <div class="row">
-        <div class="gpo col-10">
-            <label class="form-label">Notas (opcional):</label>
-            <textarea wire:model="notas" class="form-control"></textarea>
+        <div class="gpo col-10 ">
+            <label onclick="VerNoVer('ver','notas')" class="PaClick form-label">Notas:</label>
+            <div id="sale_vernotas" style="display:none;">
+                <textarea wire:model="notas" class="form-control"></textarea>
+            </div>
         </div>
     </div>
     <div class="row">
