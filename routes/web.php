@@ -9,6 +9,7 @@ use App\Livewire\UsersComponent;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\soloAdminMiddle;
 use App\Http\Middleware\soloRecorridosMiddle;
+use App\Http\Middleware\supervisorOrAdminMiddle;
 use App\Livewire\VerRecorridosComponent;
 
 Route::middleware(['auth.basic'])->group(function(){
@@ -16,7 +17,7 @@ Route::middleware(['auth.basic'])->group(function(){
     Route::get('/grupos',GruposComponent::class)->name('grupos')->middleware(soloRecorridosMiddle::class);;
     Route::get('/boletos',BoletosComponent::class)->name('boletos')->middleware(soloRecorridosMiddle::class);;
     Route::get('/usuarios',UsersComponent::class)->name('usuarios')->middleware(soloAdminMiddle::class);
-    Route::get('/verRecorridos',VerRecorridosComponent::class)->name('verRecs');
+    Route::get('/verRecorridos',VerRecorridosComponent::class)->middleware(supervisorOrAdminMiddle::class)->name('verRecs');
 });
 
 

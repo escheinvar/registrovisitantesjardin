@@ -44,6 +44,7 @@ class UsersSeed extends Seeder
             ['crol_rol'=>'recorridos',  'crol_describe'=>'Persona coordinadora de recorridos'],
             ['crol_rol'=>'escolares',   'crol_describe'=>'Persona coordinadora de recorridos escolares'],
             ['crol_rol'=>'guia',        'crol_describe'=>'Persona guia de recorridos'],
+            ['crol_rol'=>'supervisor',        'crol_describe'=>'Persona guia de recorridos'],
         ];
         foreach ($events as $event){
             catRolesModel::create($event);
