@@ -34,7 +34,13 @@
                             <!-- Visitante -->
                             {{-- {{ $NumGente->where('bol_gpoid',$g->gpo_id)->value('suma') }} --}}
                             <!-- Hora-->
-                            <td>{{  date('H:m',strtotime($g->gpo_ini_reg))  }} </td>
+                            <td>
+                                @if($g->gpo_cerrado=='0')
+                                {{ preg_replace('/:..$/','',  preg_replace('/^.* /','',$g->gpo_ini_reg) )}}
+                                @else
+                                    {{ preg_replace('/:..$/','',  preg_replace('/^.* /','',$g->gpo_fin_reg) )}}
+                                @endif
+                            </td>
                             <!-- Estatus-->
                             <td style="@if($g->gpo_cerrado=='0') background-color:green; color:white; @endif">
                                 @if($g->gpo_cerrado=='0')

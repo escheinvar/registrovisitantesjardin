@@ -71,7 +71,9 @@ class BoletosComponent extends Component
 
 
     public function CerrarGrupo(){
-        gruposModel::where('gpo_cerrado','0')->update(['gpo_cerrado'=>'1']);
+        gruposModel::where('gpo_cerrado','0')->update([
+            'gpo_cerrado'=>'1'
+        ]);
         redirect('/grupos');
     }
 
@@ -91,8 +93,10 @@ class BoletosComponent extends Component
         }
         redirect('/boletos');
     }
+
     public function render() {
         if(preg_match('/\D/', $this->Internacional)) {$this->Internacional='0';}
+
         ##### Obtiene el número de grupos abiertos del día de hoy
         $NumGposAbiertos=gruposModel::where('gpo_date', date('Y-m-d'))
             ->where('gpo_cerrado','0')
@@ -113,7 +117,6 @@ class BoletosComponent extends Component
 
         ##### Calcula número de gente que ya hay dentro del grupo
         $GenteDentro=boletosModel::where('bol_gpoid',$this->GpoAbierto->gpo_id)->sum('bol_cant');
-
 
         $this->GpoSize = $GenteDentro + $this->boletos;
 

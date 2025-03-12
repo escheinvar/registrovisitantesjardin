@@ -17,6 +17,15 @@ class GruposComponent extends Component
         $this->gpo='Aún sin definir';
         $this->guia='Aún sin definir';
         $this->verNvoGpo='0';
+
+        ###### Detecta y cierra grupos abiertos del día anterior
+        $hoy=date('Y-m-d');
+        gruposModel::where('gpo_cerrado','0')
+            ->where('gpo_date','!=',$hoy)
+            ->update([
+                'gpo_cerrado'=>'1',
+                'gpo_fin_reg'=>date('Y-m-d H:i:s'),
+            ]);
     }
 
 
@@ -38,7 +47,6 @@ class GruposComponent extends Component
     }
 
     public function render() {
-
         ##### Obtiene la fecha de hoy
         $fecha=[
             'anio'=>date('Y'),'mes'=>date('n'),'dia'=>date('j'),

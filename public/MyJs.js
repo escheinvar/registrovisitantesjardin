@@ -46,9 +46,16 @@ function VerNoVerPass(CampoPass,CampoIcono, iconoText, iconoPass){
 ///// Sólo permitir números
 function SoloNums (e){
     key = e.keyCode ? e.keyCode : e.which;
-    if  ( key < 48 || key > 57){
+    if  ( key >= 48 || key <= 57){
         return true;
+    }else{
+        return false;
     }
+    // var key=e.which || e.KeyCode;
+    // if  ( key >=48 && key <= 57)
+    //  // to check whether pressed key is number or not
+    //         return true;
+    //  else return false;
 }
 
 //Inhabilitar tecla de espacio

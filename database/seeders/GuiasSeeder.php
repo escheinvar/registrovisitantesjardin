@@ -15,7 +15,7 @@ class GuiasSeeder extends Seeder
     {
         $events=[
             'Aún sin definir',
-            'Recorrido',
+            'Paseo',
             'Alejandro',
             'Geovanny',
             'Vianney',
