@@ -1,1 +1,4 @@
 
+apt install php8.3-gd
+apt install php8.3-intl
+apt install php8.3-xsl
