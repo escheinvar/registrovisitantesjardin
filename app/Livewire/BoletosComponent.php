@@ -73,7 +73,8 @@ class BoletosComponent extends Component
 
     public function CerrarGrupo(){
         gruposModel::where('gpo_cerrado','0')->update([
-            'gpo_cerrado'=>'1'
+            'gpo_cerrado'=>'1',
+            'gpo_fin_reg'=>date('Y-m-d H:i:s'),
         ]);
         redirect('/grupos');
     }
