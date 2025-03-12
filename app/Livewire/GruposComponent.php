@@ -35,6 +35,7 @@ class GruposComponent extends Component
 
     public function GeneraGrupo(){
         gruposModel::create([
+            'gpo_id'=>gruposModel::max('gpo_id')+1,
             'gpo_date'=>date('Y-m-d'),
             'gpo_cerrado'=>'0',
             'gpo_num'=>$this->numero,

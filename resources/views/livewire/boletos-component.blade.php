@@ -28,9 +28,9 @@
             font-size:180%;
         }
         .botoncillo {
-            font-size: 170%;
+            font-size: 150%;
             color:#CDC6B9;
-            margin:3px;
+            margin:2px;
             cursor: pointer;
         }
         .gpo{

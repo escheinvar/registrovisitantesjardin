@@ -14,6 +14,7 @@ class boletosModel extends Model
 	#protected $keyType = 'string';
 
     protected $fillable = [
+        'bol_id',
         'bol_gpoid',
         'bol_gpodate',
         'bol_bolname',

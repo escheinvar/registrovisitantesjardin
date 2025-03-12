@@ -56,6 +56,7 @@ class BoletosComponent extends Component
         foreach($todos as $i){
             if($this->$i > 0){
                 boletosModel::create([
+                    'bol_id'=>boletosModel::max('bol_id') + 1,
                     'bol_gpoid'=>$this->GpoAbierto->gpo_id,
                     'bol_bolname'=>$i,
                     'bol_gpodate'=>date('Y-m-d'),

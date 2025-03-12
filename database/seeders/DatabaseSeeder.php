@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             tipoGpoSeeder::class,
 
             #boletosSeeder::class,
+            koboBoletosSeeder::class,
         ]);
 
         // User::factory(10)->create();
