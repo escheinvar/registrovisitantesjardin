@@ -134,17 +134,17 @@
             <div class="col-6 col-sm-4 col-md-4">
                 <div class="gpo">
                     <div class="colA">Internacional</div>
-                    <input wire:model.live="Internacional" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="number" min="0" class="colB form-control">
+                    <input wire:model.live="Internacional"  onkeypress='return event.charCode >= 48 && event.charCode <= 57;' type="number" min="0" class="colB form-control">
                     <i wire:click="suma('Internacional')" class="botoncillo bi bi-plus-circle-fill"></i>
                     @if($Internacional > 0)
-                        <i wire:click="resta('Internacional')" class="botoncillo bi bi-dash-circle-fill"></i>
+                        <i wire:click="resta('Internacional')" id='ja1' class="botoncillo bi bi-dash-circle-fill"></i>
                     @endif
                 </div>
             </div>
             <div class="col-6 col-sm-4 col-md-4">
                 <div class="gpo">
                     <div class="colA">Nacional</div>
-                    <input wire:model.live="Nacional" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="number" min="0" class="colB form-control">
+                    <input wire:model.live="Nacional" id="Nacional" onkeyup="sumar()" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="number" min="0" class="colB form-control">
                     <i wire:click="suma('Nacional')" class="botoncillo bi bi-plus-circle-fill"></i>
                     @if($Nacional > 0)
                         <i wire:click="resta('Nacional')" class="botoncillo bi bi-dash-circle-fill"></i>
@@ -221,12 +221,6 @@
         </div>
     </div>
     <div class="row">
-        {{-- <div class="gpo col-5">
-            <label class="form-label">Correo electrónico:</label>
-            <div class="form-group">
-                <input wire:model="mail" type="text" class="form-control" style="width:100%;" disabled>
-            </div>
-        </div> --}}
         <div class="gpo col-5">
             @if($boletos > 0)
                 <button wire:click="borrar()" class="btn btn-secondary"> Borrar datos <i class="bi bi-x-circle"></i></button>
@@ -235,16 +229,12 @@
 
         <div class="gpo col-5">
             @if($boletos > 0)
-                {{-- <br> --}}
-                {{-- <button  wire:click="DarBoletos('eletronico')" class="btn btn-secondary" disabled>Enviar boletos <i class="bi bi-wifi"></i></button> --}}
-                {{-- &nbsp; --}}
                 <button wire:click="DarBoletos('fisico')" class="btn btn-primary">Entregar boletos <i class="bi bi-ticket-fill"></i></button>
             @endif
         </div>
     </div>
-    {{-- <div class="row">
-        <div class="col-4">
-            <button class="btn btn-secondary" disabled>Registrar salida</button>
-        </div>
-    </div> --}}
+
+
+
+
 </div>

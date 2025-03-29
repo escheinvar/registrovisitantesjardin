@@ -34,6 +34,7 @@ class BoletosComponent extends Component
     public function suma($var){
         if($this->$var==''){$this->$var='0';}
         $this->$var++ ;
+        $this->dispatch('sumar');
     }
     public function resta($var){
         if($this->$var==''){$this->$var='0';}
